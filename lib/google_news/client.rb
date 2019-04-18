@@ -25,12 +25,11 @@ module GoogleNews
 
     private
       def url(path, options)
-        p @base_url + path + query(options)
         (@base_url + path + query(options)).encode('utf-8')
       end
 
       def query(options)
-        raise InvalidOptionError if options[:keyword] && options[:topic]
+        raise GoogleNews::Error if options[:keyword] && options[:topic]
         "?#{options[:keyword] && 'q=' + options[:keyword]}&gl=#{options[:country] || @country}&hl=#{options[:language] || @language}&ned=#{options[:edition] || @edition}"
       end
   end
