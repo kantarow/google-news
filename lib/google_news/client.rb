@@ -1,4 +1,5 @@
 require "rss"
+require "uri"
 
 module GoogleNews
   class Client
@@ -25,7 +26,7 @@ module GoogleNews
 
     private
       def url(path, options)
-        (@base_url + path + query(options)).encode('utf-8')
+        URI.encode(@base_url + path + query(options))
       end
 
       def query(options)
